@@ -10,5 +10,13 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
     when '/photo'
       bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new('001.png', 'image/png'))
     end
+  when '/info'
+    file_path = "players_info"
+
+    f = File.new(file_path, "r:UTF-8")
+    lines = f.readlines
+
+    bot.api.send_photo(chat_id: message.chat.id, text: lines)
+  end
   end
 end
