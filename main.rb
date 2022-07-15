@@ -9,13 +9,14 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
        bot.api.send_message(chat_id: message.chat.id, text: "Привіт, #{message.from.first_name}, розробка гри вже розпочалась!")
     when '/photo'
       bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new('001.png', 'image/png'))
-    end
-  when '/info'
+    when '/info'
     file_path = "players_info"
 
     f = File.new(file_path, "r:UTF-8")
     lines = f.readlines
+    File.open('players_info', 'a'){ |file| file.write 1 }
 
-    bot.api.send_photo(chat_id: message.chat.id, text: lines)
+    bot.api.send_message(chat_id: message.chat.id, text: lines)
   end
+end
 end
