@@ -14,7 +14,6 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
 
     f = File.new(file_path, "r:UTF-8")
     lines = f.readlines
-    File.open('players_info', 'a'){ |file| file.write 1 }
 
     bot.api.send_message(chat_id: message.chat.id, text: lines)
   end
