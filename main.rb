@@ -18,5 +18,4 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
 
     bot.api.send_photo(chat_id: message.chat.id, text: lines)
   end
-  end
 end
